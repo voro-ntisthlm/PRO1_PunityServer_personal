@@ -1,25 +1,23 @@
-﻿using System;
+﻿// A lot of help was taken from this github: https://github.com/tom-weiland/tcp-udp-networking/tree/master/GameServer/GameServer 
+
+using System;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Text;
 
 namespace PunityServer
 {
     class Program
     {
-        static public int port = 3404;
-        static public IPAddress serverAdress = Dns.GetHostEntry("localhost").AddressList[0];
-        static public int playerLimit = 2;
-        static public string serverName;
-        static public string motd;
-
-
-        static void Main(string[] args)
+       static void Main(string[] args)
         {
+            Console.Title = "PunityServer";
             Console.WriteLine("Punity Server\n\nReading Server.cfg file");
-            ReadConfig();
+            //ReadConfig();
             Console.WriteLine("Finished applying Server.cfg\nStarting server...");
-            Console.Read();
+
+            
         }
 
         static public void ReadConfig(){
@@ -40,7 +38,7 @@ namespace PunityServer
                         case "PORT":
                             int.TryParse(line[1], out port);
                             break;
-                        case "MAXPLAYERS":
+                        case "MAXClients":
                             int.TryParse(line[1], out playerLimit);
                             break;
                         case "IP":
